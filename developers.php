@@ -55,7 +55,6 @@
         <!-- Developer 1 -->
         <div class="col-md-4 mb-4">
             <div class="card">
-                <img src=""gian.jpg"" alt="Developer">
                 <div class="card-body">
                     <h5 class="card-title">Gian</h5>
                     <p><strong>Role:</strong> Backend Developer</p>
@@ -67,7 +66,6 @@
                 <!-- Developer 2 -->
         <div class="col-md-4 mb-4">
             <div class="card">
-                <img src=""jerwin.jpg"" alt="Developer">
                 <div class="card-body">
                     <h5 class="card-title">Jerwin</h5>
                     <p><strong>Role:</strong> UI Developer</p>
