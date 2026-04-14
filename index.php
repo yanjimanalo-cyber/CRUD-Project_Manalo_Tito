@@ -1,3 +1,13 @@
+<?php
+include 'config.php';
+
+$result = $conn->query("SELECT * FROM students");
+
+if(!$result) {
+    die("Query failed: " . $conn->error);
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,19 +93,26 @@
             <th>Actions</th>
         </tr>
 
-        <?php while($row = $result->fetch_assoc()): ?>
-        <tr>
-            <td><?= $row['id'] ?></td>
-            <td><?= $row['student_name'] ?></td>
-            <td><?= $row['student_id'] ?></td>
-            <td><?= $row['course'] ?></td>
-            <td><?= $row['year_level'] ?></td>
-            <td>
-                <a href="update.php?id=<?= $row['id'] ?>">✏️ Edit</a> |
-                <a href="delete.php?id=<?= $row['id'] ?>" onclick="return confirm('Sigurado ka ba?')">❌ Delete</a>
-            </td>
-        </tr>
-        <?php endwhile; ?>
+        <?php if($result->num_rows > 0): ?>
+            <?php while($row = $result->fetch_assoc()): ?>
+                <tr>
+                    <td><?= $row['id'] ?></td>
+                    <td><?= htmlspecialchars($row['student_name']) ?></td>
+                    <td><?= htmlspecialchars($row['student_id']) ?></td>
+                    <td><?= htmlspecialchars($row['course']) ?></td>
+                    <td><?= $row['year_level'] ?></td>
+                    <td>
+                        <a href="update.php?id=<?= $row['id'] ?>">✏️ Edit</a> |
+                        <a href="delete.php?id=<?= $row['id'] ?>" onclick="return confirm('Sigurado ka ba?')">❌ Delete</a>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <tr>
+                <td colspan="6">No students found.</td>
+            </tr>
+        <?php endif; ?>
+
     </table>
 
 </div>
